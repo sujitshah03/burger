@@ -1,0 +1,59 @@
+<h1>BURGERS TIME YAY!!!</h1>
+
+
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+<h2>HI!!! WE ARE BURGERS</h2>
+
+<ul>
+  {{#each burgers}}
+    {{#unless this.eaten}}
+      <li>
+        {{this.burger_name}} <span> | </span> {{this.createdAt}}
+
+        <form action="/{{this.id}}?_method=PUT" method="POST">
+          <input type="hidden" name="eaten" value="true">
+          <button type="submit">wanna eat me :)</button>
+        </form>
+      </li>
+    {{/unless}}
+  {{/each}}
+</ul>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<p><img src="assets/img/Cheeseburger.png"></img></p>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<h2>YAY!! YOU ATE ME !!!!!</h2>
+
+<ul>
+  {{#each burgers}}
+    {{#if this.eaten}}
+      <li>
+        {{this.burger_name}} <span> | </span> {{this.createdAt}}
+      </li>
+    {{/if}}
+  {{/each}}
+</ul>
+</div>
+</div>
+
+<h2>Build-a-Burger</h2>
+<form class="create-update-form" action="/" method="POST">
+
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="burger_name">
+  </div>
+
+  <div class="form-group">
+    <label for="slee">EATEN?</label><br>
+    <input type="radio" name="eaten" value="1"> Yes!!<br>
+    <input type="radio" name="eaten" value="0" checked> Not yet..
+  </div>
+
+  <button type="submit">Add Burger</button>
+</form>
